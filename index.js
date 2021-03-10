@@ -70,13 +70,14 @@ document.getElementById('button__draw').addEventListener('click', () => {
     canvas.data(lastData);
     canvas.draw();   
 
+    // 
 
     let test_colors = document.getElementById('test_canvas'),
         ctx = test_colors.getContext('2d');
 
-    for(let i = 0, color = 0; i < gradientData.length; i+=8, color++) {
+    for(let i = 0, color = 0; i < gradientData.length; i+=9, color++) {
         ctx.fillStyle = 'rgb(' + gradientData[i] + ',' + gradientData[i + 1] + ',' + gradientData[i + 2] + ')';
-        console.log('rgb(' + gradientData[i] + ',' + gradientData[i + 1] + ',' + gradientData[i + 2] + ')');
+        // console.log('rgb(' + gradientData[i] + ',' + gradientData[i + 1] + ',' + gradientData[i + 2] + ')');
         ctx.fillRect(0, i, 600,7);
     }
 

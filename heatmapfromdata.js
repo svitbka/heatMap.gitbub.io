@@ -85,7 +85,7 @@ heatmapfromdata.prototype = {
                 secondColorR = +colors[i + 1][0],
                 secondColorG = +colors[i + 1][1],
                 secondColorB = +colors[i + 1][2],
-                limit = 1024 / (colors.length - 1) /3 ,
+                limit = 1024 / (colors.length - 1) / 3 ,
                 step = 1 / limit;
                 console.log('limit ' +  limit);
                 console.log('step ' + step);
@@ -97,7 +97,7 @@ heatmapfromdata.prototype = {
                 data.push(Math.floor(firstColorB * (1 - t) + secondColorB * t));
             }
         }
-
+        console.log('data.length' + data.length);
         return data;
     },
 

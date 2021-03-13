@@ -47,7 +47,7 @@ heatmapfromdata.prototype = {
 
         ctx.shadowOffsetX = ctx.shadowOffsetY = r2 * 2;
         ctx.shadowBlur = blur;
-        ctx.shadowColor = 'red';
+        ctx.shadowColor = 'black';
 
         ctx.beginPath();
         ctx.arc(-r2, -r2, r, 0, Math.PI * 2, true);
@@ -85,7 +85,7 @@ heatmapfromdata.prototype = {
                 secondColorR = +colors[i + 1][0],
                 secondColorG = +colors[i + 1][1],
                 secondColorB = +colors[i + 1][2],
-                limit = 1024 / (colors.length - 1) / 3 ,
+                limit = 1024 / (colors.length - 1) / 4 ,
                 step = 1 / limit;
                 console.log('limit ' +  limit);
                 console.log('step ' + step);
@@ -95,6 +95,7 @@ heatmapfromdata.prototype = {
                 data.push(Math.floor(firstColorR * (1 - t) + secondColorR * t));
                 data.push(Math.floor(firstColorG * (1 - t) + secondColorG * t));
                 data.push(Math.floor(firstColorB * (1 - t) + secondColorB * t));
+                data.push(255);
             }
         }
         console.log('data.length' + data.length);
@@ -117,7 +118,7 @@ heatmapfromdata.prototype = {
 
         for (let i = 0, len = this._data.length, p; i < len; i++) {
             p = this._data[i];
-            ctx.globalAlpha = Math.min(Math.max(p[2] / this._max, minOpacity === undefined ? 0.3 : minOpacity), 1);
+            ctx.globalAlpha = Math.min(Math.max(p[2] / this._max, minOpacity === undefined ? 0.05 : minOpacity), 1);
             ctx.drawImage(this._circle, p[0] - this._r, p[1] - this._r);
         }
 
@@ -188,13 +189,12 @@ function makeStruct(data) {
     return newData;
 };
 
-function ganeration() {
-    let data = [],
-        n = 15;
+function ganeration(n) {
+    let data = [];
 
     for(let i = 0; i < n; i++) {
         for(let j = 0; j < n; j++) {
-            let rand = Math.round(Math.random() * 10);
+            let rand = Math.round(Math.random() * 5);
             data += String(rand) + " ";
         }
         if (i != n - 1) data += "\n";

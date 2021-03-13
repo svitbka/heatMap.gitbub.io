@@ -1,6 +1,6 @@
-let switchPallette = document.getElementById('switchpallette');
+var mapDataString = "";
 
-switchPallette.addEventListener('click', function() {
+document.getElementById('switchpallette').addEventListener('click', function() {
     let pallette = document.getElementById('wrap__pallette');
 
     if (pallette.hidden === false) {
@@ -46,13 +46,15 @@ document.getElementById('button__save').addEventListener('click', () => {
 
 document.getElementById('button__draw').addEventListener('click', () => {
     let colors = "";
-
+    
     document.getElementById('user__pallette').querySelectorAll('li').forEach((e) => {
         colors += e.dataset.value;
     });
 
-    let mapDataString = ganeration(),
-        parseData = parse(mapDataString),
+    // if (mapDataString === undefined) return;
+
+    let mapDataString = ganeration(12);
+    let parseData = parse(mapDataString),
         normalizationData = dataNormalization(parseData),
         lastData = makeStruct(normalizationData);
 
@@ -70,18 +72,32 @@ document.getElementById('button__draw').addEventListener('click', () => {
     canvas.data(lastData);
     canvas.draw();   
 
+    // 
 
     let test_colors = document.getElementById('test_canvas'),
         ctx = test_colors.getContext('2d');
 
     for(let i = 0, color = 0; i < gradientData.length; i+=8, color++) {
         ctx.fillStyle = 'rgb(' + gradientData[i] + ',' + gradientData[i + 1] + ',' + gradientData[i + 2] + ')';
-        console.log('rgb(' + gradientData[i] + ',' + gradientData[i + 1] + ',' + gradientData[i + 2] + ')');
+        // console.log('rgb(' + gradientData[i] + ',' + gradientData[i + 1] + ',' + gradientData[i + 2] + ')');
         ctx.fillRect(0, i, 600,7);
     }
 
 
 });
+
+// document.getElementById('button__select__file').addEventListener('change', () => {
+//     let file = document.querySelector('input[type=file]').files[0];
+//         reader = new FileReader();
+
+//     reader.readAsText(file);
+    
+//     reader.onload = function(e) {
+//         mapDataString = e.target.result;  
+//     }
+// });
+
+
 
 
 

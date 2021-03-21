@@ -1,1 +1,1 @@
-(https://github.com/svitbka/heatMap.github.io/blob/master/screenshot/heatmap1000x1000.png)
+![1000x1000](https://github.com/svitbka/heatMap.github.io/blob/master/screenshot/heatmap1000x1000.png)
